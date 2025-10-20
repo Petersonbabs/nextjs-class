@@ -22,9 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <p>Generally shared compoent</p>
-      
         {children}
-        {/* /about element-{<About />} */}
       </body>
     </html>
   );
