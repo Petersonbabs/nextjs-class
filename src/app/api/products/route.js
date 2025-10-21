@@ -19,6 +19,8 @@ export async function GET() {
     }
 }
 
+// NextAuth: Oatuh signin google, sessions
+// NextTheme
 
 export const POST = async () => {
     return NextResponse.json({
@@ -40,3 +42,4 @@ export function DELETE() {
     })
 }
 
+// layout & metadata
