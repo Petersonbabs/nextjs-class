@@ -1,6 +1,9 @@
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/UI/NavBar";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,10 +15,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Bryant Clothing | Best Ecommerce Store in Nigerian",
-  description: "Get the best outfit for different ocassions"
-}
+// export const metadata = {
+//   title: "Bryant Clothing | Best Ecommerce Store in Nigerian",
+//   description: "Get the best outfit for different ocassions"
+// }
 // metadata: Controls what shows up in the browser tab, search result, social preview
 
 
@@ -24,7 +27,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <p>Generally shared compoent</p>
-        {children}
+        <SessionProvider>
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
