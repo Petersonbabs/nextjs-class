@@ -2,15 +2,17 @@
 // "use client"
 
 import ProductsCard from "@/components/products/ProductsCard"
+import { Suspense } from "react"
 
 // server actions
 
 const ProductsPage = async () => {
     const fetchProducts = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products`)
+            const response = await fetch(`https://fakestoreapi.com/products`)
             const data = await response.json()
-            return data.products
+            console.log(data)
+            return data
         } catch (error) {
             console.log(error)
         }
@@ -18,11 +20,14 @@ const ProductsPage = async () => {
     const products = await fetchProducts()
     return (
         <div>
-            {
-                products?.map((product, idx) => (
-                    <ProductsCard title={product.title} image={product.image} price={product.price} category={product.category} />
-                ))
-            }
+            <h1>Products Page</h1>
+            <Suspense fallback={<h2>Loading products...</h2>}>
+                {
+                    products?.map((product, idx) => (
+                        <ProductsCard title={product.title} image={product.image} price={product.price} category={product.category} />
+                    ))
+                }
+            </Suspense>
         </div>
     )
 }

@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/UI/NavBar";
 import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,6 +22,12 @@ const geistMono = Geist_Mono({
 // }
 // metadata: Controls what shows up in the browser tab, search result, social preview
 
+// <Image>
+// Cache Components
+// Suspense:  
+// Proxy
+// Link
+// Font Optimization
 
 export default function RootLayout({ children }) {
   return (
@@ -28,7 +35,9 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <p>Generally shared compoent</p>
         <SessionProvider>
-          {children}
+          <ThemeProvider attribute="class"  >
+            {children}
+          </ThemeProvider>
         </SessionProvider>
       </body>
     </html>
